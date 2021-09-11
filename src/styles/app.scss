@@ -1,6 +1,11 @@
 @import './imports.scss';
 
 body {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 500;
   font-family: 'Urbanist', sans-serif;
+}
+
+img {
+  width: 100%;
 }
