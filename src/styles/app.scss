@@ -1,9 +1,19 @@
-@import './imports.scss';
+@import './variables';
+@import './animations';
+@import './imports';
+
+html,
+body,
+#app,
+.main {
+  height: 100%;
+}
 
 body {
   font-size: 18px;
   font-weight: 500;
   font-family: 'Urbanist', sans-serif;
+  color: $black;
 }
 
 img {
