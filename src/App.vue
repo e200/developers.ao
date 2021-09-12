@@ -27,6 +27,8 @@
 <script>
 import FlagColors from "./components/FlagColors";
 import GithubUsers from "./components/GithubUsers";
+
+import Spinner from "./components/Spinner";
 export default {
   name: "App",
     FlagColors,
