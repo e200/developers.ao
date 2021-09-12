@@ -16,6 +16,8 @@
         We are 1610 developers based in Angola. Get to know us:
       </header>
 
+      <github-users />
+
       <spinner class="spinner" />
 
     </div>
@@ -23,9 +25,10 @@
 </template>
 
 <script>
+import GithubUsers from "./components/GithubUsers";
 export default {
   name: "App",
-  components: {},
+    GithubUsers,
 };
 </script>
 
