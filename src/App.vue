@@ -1,5 +1,5 @@
 <template>
-  <main>
+    <flag-colors />
     <div class="container">
       <header class="home-header">
         <img
