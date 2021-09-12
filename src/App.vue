@@ -1,5 +1,7 @@
 <template>
+  <main class="main">
     <flag-colors />
+
     <div class="container">
       <header class="home-header">
         <img
@@ -8,18 +10,22 @@
           alt="Github logo"
         />
 
-        <h1 class="home-header-title">Angolanos no Github</h1>
+        <h1 class="home-header-title flag-color-animation">
+          Angolanos no Github
+        </h1>
         <h2 class="home-header-subtitle">
           Angolanos que contribuem para projectos Open-Source
         </h2>
-        
-        We are 1610 developers based in Angola. Get to know us:
+
+        1610 desenvolvedores residentes em Angola. Saiba quem são:
       </header>
 
       <github-users />
 
       <spinner class="spinner" />
 
+      <br />
+      <br />
     </div>
   </main>
 </template>
@@ -27,12 +33,33 @@
 <script>
 import FlagColors from "./components/FlagColors";
 import GithubUsers from "./components/GithubUsers";
-
 import Spinner from "./components/Spinner";
+
 export default {
   name: "App",
+  components: {
     FlagColors,
     GithubUsers,
+    Spinner,
+  },
+  methods: {
+    registerReachedScrollBottomListener() {
+      setTimeout(() => {
+        window.onscroll = function () {
+          // https://stackoverflow.com/a/44077777/6362415
+          const scrollHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+
+          if (scrollHeight == window.scrollY) {
+            console.log("Reached the bottom");
+          }
+        };
+      }, 3000);
+    },
+  },
+  mounted() {
+    this.registerReachedScrollBottomListener();
+  },
 };
 </script>
 
@@ -42,16 +69,13 @@ export default {
 .home {
   &-header {
     text-align: center;
+    margin-bottom: 3em;
 
     &-logo {
       margin-top: 35px;
       max-width: 130px;
     }
-    
-    &-title {
-      color: #1d1d1d;
-    }
-    
+
     &-subtitle {
       color: #5e5e5e;
     }
