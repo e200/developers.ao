@@ -15,6 +15,9 @@
         
         We are 1610 developers based in Angola. Get to know us:
       </header>
+
+      <spinner class="spinner" />
+
     </div>
   </main>
 </template>
