@@ -25,9 +25,11 @@
 </template>
 
 <script>
+import FlagColors from "./components/FlagColors";
 import GithubUsers from "./components/GithubUsers";
 export default {
   name: "App",
+    FlagColors,
     GithubUsers,
 };
 </script>
