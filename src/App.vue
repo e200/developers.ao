@@ -20,7 +20,7 @@
         1610 desenvolvedores residentes em Angola. Saiba quem são:
       </header>
 
-      <github-users />
+      <github-users :users="users" />
 
       <spinner class="spinner" />
 
@@ -35,6 +35,8 @@ import FlagColors from "./components/FlagColors";
 import GithubUsers from "./components/GithubUsers";
 import Spinner from "./components/Spinner";
 
+import store from "./store";
+
 export default {
   name: "App",
   components: {
@@ -42,7 +44,17 @@ export default {
     GithubUsers,
     Spinner,
   },
+  computed: {
+    users() {
+      return store.state.users.items;
+    },
+  },
   methods: {
+    fetchUsers() {
+      store.dispatch("users/fetch", {
+        limit: 36,
+      });
+    },
     registerReachedScrollBottomListener() {
       setTimeout(() => {
         window.onscroll = function () {
@@ -51,7 +63,9 @@ export default {
             document.documentElement.scrollHeight - window.innerHeight;
 
           if (scrollHeight == window.scrollY) {
-            console.log("Reached the bottom");
+            store.dispatch("users/fetch", {
+              limit: 36,
+            });
           }
         };
       }, 3000);
@@ -59,6 +73,8 @@ export default {
   },
   mounted() {
     this.registerReachedScrollBottomListener();
+
+    this.fetchUsers();
   },
 };
 </script>
