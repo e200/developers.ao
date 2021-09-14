@@ -3,11 +3,23 @@ import http from "../../services/http";
 export default {
   namespaced: true,
   state: {
+    isFetching: false,
     page: 1,
     limit: 32,
+    total: undefined,
+    error: undefined,
     items: [],
   },
   mutations: {
+    total(state, value) {
+      state.total = value
+    },
+    error(state, value) {
+      state.error = value
+    },
+    isFetching(state, value) {
+      state.isFetching = value
+    },
     incrementPage(state) {
       state.page++
     },
@@ -20,14 +32,26 @@ export default {
       const { page } = state
       const { limit } = pagination
 
-      const result = await http.get(
-        `/search/users?q=%20location:Angola+location:luanda&sort=&per_page=${limit}&page=${page}`
-      )
+      commit('isFetching', true)
 
-      const { data } = result
+      try {
+        const result = await http.get(
+          `/search/users?q=%20location:Angola+location:luanda&sort=&per_page=${limit}&page=${page}`
+        )
 
-      commit('users', data.items)
-      commit('incrementPage')
+        const { data } = result
+        const { items, total_count } = data
+
+        commit('users', items)
+        commit('total', total_count)
+
+        commit('incrementPage')
+      } catch (error) {
+        commit('error', error)
+      } finally {
+
+        commit('isFetching', false)
+      }
     },
   }
 }
