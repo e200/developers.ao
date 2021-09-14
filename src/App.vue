@@ -17,7 +17,7 @@
           Angolanos que contribuem para projectos Open-Source
         </h2>
 
-        1610 desenvolvedores residentes em Angola. Saiba quem são:
+        {{ total }} desenvolvedores residentes em Angola. Saiba quem são:
       </header>
 
       <github-users :users="users" />
