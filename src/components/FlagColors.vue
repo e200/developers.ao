@@ -25,7 +25,7 @@ export default {
 <style lang="scss">
 @import "../styles/variables.sass";
 
-$animation-duration-in-seconds: 1.5;
+$animation-duration-in-seconds: 1;
 
 $color-list: (
   0: "red",
