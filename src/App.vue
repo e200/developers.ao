@@ -49,6 +49,12 @@ export default {
     users() {
       return store.state.users.items;
     },
+    hasUsers() {
+      return this.users && this.total !== this.users.length;
+    },
+    total() {
+      return store.state.users.total;
+    },
   },
   methods: {
     fetchUsers() {
@@ -57,19 +63,21 @@ export default {
       });
     },
     registerReachedScrollBottomListener() {
+      const me = this;
+
       setTimeout(() => {
         window.onscroll = function () {
           // https://stackoverflow.com/a/44077777/6362415
           const scrollHeight =
             document.documentElement.scrollHeight - window.innerHeight;
 
-          if (scrollHeight == window.scrollY) {
+          if (scrollHeight == window.scrollY && me.hasUsers) {
             store.dispatch("users/fetch", {
               limit: 36,
             });
           }
         };
-      }, 3000);
+      }, 3000); // Timeout to give time for the opening animation
     },
   },
   mounted() {
