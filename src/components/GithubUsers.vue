@@ -8,12 +8,15 @@
       >
         <github-user :user="user" />
       </div>
+      
+      <spinner class="spinner" />
     </div>
   </section>
 </template>
 
 <script>
 import GithubUser from "./GithubUser.vue";
+import Spinner from "./Spinner";
 
 export default {
   props: {
@@ -24,6 +27,7 @@ export default {
   },
   components: {
     GithubUser,
+    Spinner,
   },
 }
 </script>
