@@ -4,6 +4,7 @@
       <div class="github-user-picture-wrapper">
         <img
           class="github-user-picture"
+          v-lazy="user.avatar_url"
           :src="user.avatar_url"
           :alt="user.login"
         />

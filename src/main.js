@@ -1,5 +1,22 @@
 import { createApp } from 'vue'
+
+import VueLazyload from '@jambonn/vue-lazyload'
+
 import App from './App.vue'
 import store from './store'
 
-createApp(App).use(store).mount('#app')
+const app = createApp(App)
+
+app.use(store)
+
+const loadingImage = require('./assets/spinner.gif')
+
+app.use(VueLazyload, {
+  preLoad: 1.3,
+  // TODO: add error image
+  // error: errorimage,
+  loading: loadingImage,
+  attempt: 3,
+})
+
+app.mount('#app')
