@@ -944,6 +944,11 @@
     cssnano-preset-default "^4.0.0"
     postcss "^7.0.0"
 
+"@jambonn/vue-lazyload@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@jambonn/vue-lazyload/-/vue-lazyload-1.0.8.tgz#3a148afcf8dd96085f0b99906fefa469f21d72db"
+  integrity sha512-ljpahX+K50ejq62O5CuYl7PSnEmeSHqkQ+sG58tV13wnokqCLuhHnHycnVxSwBhEx8Ssu+Oga5ixfCsgnu+NQA==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
