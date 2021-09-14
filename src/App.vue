@@ -20,9 +20,10 @@
         {{ total }} desenvolvedores residentes em Angola. Saiba quem são:
       </header>
 
-      <github-users :users="users" />
-
-      <spinner class="spinner" />
+      <transition name="fade" mode="out-in">
+        <github-users v-if="users" :users="users" />
+        <spinner v-else class="spinner" />
+      </transition>
 
       <br />
       <br />
