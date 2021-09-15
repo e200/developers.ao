@@ -32,14 +32,14 @@
 </template>
 
 <script>
-import FlagColors from "./components/FlagColors";
-import GithubUsers from "./components/GithubUsers";
-import Spinner from "./components/Spinner";
+import FlagColors from './components/FlagColors'
+import GithubUsers from './components/GithubUsers'
+import Spinner from './components/Spinner'
 
-import store from "./store";
+import store from './store'
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
     FlagColors,
     GithubUsers,
@@ -47,49 +47,49 @@ export default {
   },
   computed: {
     users() {
-      return store.state.users.items;
+      return store.state.users.items
     },
     hasUsers() {
-      return this.users && this.total !== this.users.length;
+      return this.users && this.total !== this.users.length
     },
     total() {
-      return store.state.users.total;
+      return store.state.users.total
     },
   },
   methods: {
     fetchUsers() {
-      store.dispatch("users/fetch", {
+      store.dispatch('users/fetch', {
         limit: 36,
-      });
+      })
     },
     registerReachedScrollBottomListener() {
-      const me = this;
+      const me = this
 
       setTimeout(() => {
         window.onscroll = function () {
           // https://stackoverflow.com/a/44077777/6362415
           const scrollHeight =
-            document.documentElement.scrollHeight - window.innerHeight;
+            document.documentElement.scrollHeight - window.innerHeight
 
           if (scrollHeight == window.scrollY && me.hasUsers) {
-            store.dispatch("users/fetch", {
+            store.dispatch('users/fetch', {
               limit: 36,
-            });
+            })
           }
-        };
-      }, 3000); // Timeout to give time for the opening animation
+        }
+      }, 3000) // Timeout to give time for the opening animation
     },
   },
   mounted() {
-    this.registerReachedScrollBottomListener();
+    this.registerReachedScrollBottomListener()
 
-    this.fetchUsers();
+    this.fetchUsers()
   },
-};
+}
 </script>
 
 <style lang="scss">
-@import "./styles/app.scss";
+@import './styles/app.scss';
 
 .home {
   &-header {

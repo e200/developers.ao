@@ -1,5 +1,10 @@
 <template>
-  <a class="github-user-link" :href="`https://github.com/${user.login}`" target="_blank">
+  <a
+    class="github-user-link"
+    :href="`https://github.com/${user.login}`"
+    target="_blank"
+    :title="user.login"
+  >
     <div class="github-user">
       <div class="github-user-picture-wrapper">
         <img
@@ -22,7 +27,7 @@ export default {
       required: true,
     },
   },
-};
+}
 </script>
 
 
@@ -44,7 +49,7 @@ $absolute-position: -8px;
   flex-direction: column;
   text-align: center;
   margin-bottom: 3em;
-  
+
   &-link {
     text-decoration: none;
     color: inherit;
@@ -53,7 +58,7 @@ $absolute-position: -8px;
   &-picture {
     max-width: 150px;
     border-radius: 100%;
-    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 3px 4px rgba($black, 0.1);
 
     &-wrapper {
       position: relative;
@@ -64,7 +69,7 @@ $absolute-position: -8px;
 
       &::before {
         position: absolute;
-        content: "";
+        content: '';
         top: $absolute-position - $absolute-position;
         left: $absolute-position - $absolute-position;
         bottom: $absolute-position - $absolute-position;

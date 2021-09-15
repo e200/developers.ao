@@ -11,26 +11,26 @@ export default {
   data() {
     return {
       animate: false,
-    };
+    }
   },
   mounted() {
-    const me = this;
+    const me = this
     setTimeout(() => {
-      me.animate = true;
-    }, 1000);
+      me.animate = true
+    }, 1000)
   },
-};
+}
 </script>
 
 <style lang="scss">
-@import "../styles/variables.sass";
+@import '../styles/variables.sass';
 
 $animation-duration-in-seconds: 1;
 
 $color-list: (
-  0: "red",
-  1: "yellow",
-  2: "black",
+  0: 'red',
+  1: 'yellow',
+  2: 'black',
 );
 
 .flag-color-lines {

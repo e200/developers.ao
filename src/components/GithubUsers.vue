@@ -8,22 +8,22 @@
       >
         <github-user :user="user" />
       </div>
-      
+
       <spinner class="spinner" />
     </div>
   </section>
 </template>
 
 <script>
-import GithubUser from "./GithubUser.vue";
-import Spinner from "./Spinner";
+import GithubUser from './GithubUser.vue'
+import Spinner from './Spinner'
 
 export default {
   props: {
     users: {
       required: true,
       type: Object,
-    }
+    },
   },
   components: {
     GithubUser,
