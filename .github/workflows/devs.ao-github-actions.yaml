@@ -8,7 +8,7 @@ jobs:
         with:
           node-version: 14
       - uses: borales/actions-yarn@v2.3.0
-      - name: Install project dependencies
+      - name: Installing project dependencies
         run: yarn install
-      - name: build project
+      - name: Building project
         run: yarn build
