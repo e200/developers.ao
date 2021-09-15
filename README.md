@@ -1,5 +1,7 @@
 # devs.ao
 
+Find developers based in Angola.
+
 ## Project setup
 ```
 yarn install
