@@ -14,7 +14,9 @@ jobs:
       - name: Installing project dependencies
         run: yarn install
       - name: Building project
-        run: yarn build
+        run: |
+          yarn add node-sass --force
+          yarn build
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
