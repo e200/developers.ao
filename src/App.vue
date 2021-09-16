@@ -62,26 +62,22 @@ export default {
         limit: 36,
       })
     },
-    registerReachedScrollBottomListener() {
-      const me = this
+    fetchUsersOnScrollToBottom() {
+      // https://stackoverflow.com/a/44077777/6362415
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight
 
-      setTimeout(() => {
-        window.onscroll = function () {
-          // https://stackoverflow.com/a/44077777/6362415
-          const scrollHeight =
-            document.documentElement.scrollHeight - window.innerHeight
-
-          if (scrollHeight == window.scrollY && me.hasUsers) {
-            store.dispatch('users/fetch', {
-              limit: 36,
-            })
-          }
-        }
-      }, 3000) // Timeout to give time for the opening animation
+      if (
+        scrollHeight == window.scrollY &&
+        this.hasUsers &&
+        !store.state.users.isFetching
+      ) {
+        this.fetchUsers()
+      }
     },
   },
   mounted() {
-    this.registerReachedScrollBottomListener()
+    window.onscroll = this.fetchUsersOnScrollToBottom
 
     this.fetchUsers()
   },
