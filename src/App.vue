@@ -14,7 +14,7 @@
           Angolanos no Github
         </h1>
         <h2 class="home-header-subtitle">
-          Angolanos que contribuem para projectos Open-Source
+          Conheça os Angolanos que contribuem para projectos Open-Source
         </h2>
 
         {{ total }} desenvolvedores residentes em Angola. Saiba quem são:
