@@ -1,9 +1,7 @@
-const publicPath = process.env.NODE_ENV === 'production'
-  ? '/build/'
-  : '/'
-
 module.exports = {
-  publicPath: publicPath,
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/build/'
+    : '/',
   css: {
     loaderOptions: {
       sass: {
