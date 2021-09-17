@@ -6,6 +6,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NODE_ENV: production
     steps:
       - uses: actions/checkout@v2
         with:
@@ -22,7 +24,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
-          git commit -m "Add changes" -- devs.ao
+          git commit -m "Add changes" -- build
         shell: bash
       - name: Push changes
         if: steps.commit.outputs.push == 'true'
