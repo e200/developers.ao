@@ -11,13 +11,14 @@ jobs:
         with:
           node-version: 14
       - uses: borales/actions-yarn@v2.3.0
-      - name: Installing project dependencies
-        run: yarn install
-      - name: Building project
-        run: |
-          yarn add node-sass --force
-          yarn build
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
+        
       - name: Commit files
+        id: commit
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "github-actions"
@@ -33,5 +34,5 @@ jobs:
         if: steps.commit.outputs.push == 'true'
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.MY_GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
