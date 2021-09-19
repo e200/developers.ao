@@ -10,14 +10,14 @@
           alt="Github logo"
         />
 
-        <h1 class="home-header-title flag-color-animation">
+        <h1 class="home-header-title">
           Angolanos no Github
         </h1>
         <h2 class="home-header-subtitle">
           Conheça os Angolanos que contribuem para projectos Open-Source
         </h2>
 
-        {{ total }} desenvolvedores residentes em Angola. Saiba quem são:
+        {{ total }} desenvolvedores residentes em Angola. Conheça eles:
       </header>
 
       <transition name="fade" mode="out-in">
@@ -80,9 +80,6 @@ export default {
     window.onscroll = this.fetchUsersOnScrollToBottom
 
     this.fetchUsers()
-    
-    document.title = 'Programadores em Angola'
-  },
 }
 </script>
 
