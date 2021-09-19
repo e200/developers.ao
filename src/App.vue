@@ -80,6 +80,8 @@ export default {
     window.onscroll = this.fetchUsersOnScrollToBottom
 
     this.fetchUsers()
+    
+    document.title = 'Programadores em Angola'
   },
 }
 </script>
