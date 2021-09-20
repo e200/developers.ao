@@ -1,6 +1,8 @@
-# devs.ao
+# developers.ao
 
 Find developers based in Angola.
+
+https://developers.ao
 
 ## Project setup
 ```
