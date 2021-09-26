@@ -2,11 +2,11 @@
 @import './animations';
 @import './imports';
 @import './helpers';
+@import './theme';
 
 html,
 body,
-#app,
-.main {
+#app {
   height: 100%;
 }
 
@@ -14,8 +14,6 @@ body {
   font-size: 18px;
   font-weight: 500;
   font-family: 'Urbanist', sans-serif;
-  color: $black;
-  background-color: $app-background;
 }
 
 img {
