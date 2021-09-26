@@ -56,9 +56,7 @@ $absolute-position: -8px;
   }
 
   &-picture {
-    max-width: 150px;
     border-radius: 100%;
-    box-shadow: 0px 3px 4px rgba($black, 0.1);
 
     &-wrapper {
       position: relative;
@@ -66,6 +64,7 @@ $absolute-position: -8px;
       cursor: pointer;
       max-width: 150px;
       margin: 0 auto;
+      border-radius: 100%;
 
       &::before {
         position: absolute;
