@@ -1,12 +1,12 @@
 <template>
-  <main class="main">
-    <flag-colors />
+  <flag-colors />
 
-    <div class="container">
+  <main class="main" :class="classes">
+    <div class="container">      
       <header class="home-header">
         <img
           class="home-header-logo"
-          src="./assets/github.png"
+          src="./assets/github-light.png"
           alt="Github logo"
         />
 
@@ -17,7 +17,9 @@
           Conheça os Angolanos que contribuem para projectos Open-Source
         </h2>
 
-        {{ total }} desenvolvedores residentes em Angola. Saiba quem são:
+        <h3 class="home-header-description">
+          {{ total }} desenvolvedores residentes em Angola. Conheça eles:
+        </h3>
       </header>
 
       <transition name="fade" mode="out-in">
@@ -55,6 +57,11 @@ export default {
     total() {
       return store.state.users.total
     },
+    classes() {
+      return {
+        'theme-dark': true,
+      }
+    }
   },
   methods: {
     fetchUsers() {
@@ -80,7 +87,7 @@ export default {
     window.onscroll = this.fetchUsersOnScrollToBottom
 
     this.fetchUsers()
-    
+
     document.title = 'Programadores em Angola'
   },
 }
@@ -92,15 +99,13 @@ export default {
 .home {
   &-header {
     text-align: center;
+    max-width: 668px;
+    margin: 0 auto;
     margin-bottom: 3em;
 
     &-logo {
       margin-top: 35px;
-      max-width: 130px;
-    }
-
-    &-subtitle {
-      color: #5e5e5e;
+      max-width: 100px;
     }
   }
 }
