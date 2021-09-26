@@ -1,5 +1,9 @@
 <template>
-  <div class="flag-color-lines" :class="{ animate: animate }">
+  <div
+    class="flag-color-lines"
+    :class="{ animate: animate }"
+    v-if="showFlagLines"
+  >
     <div class="flag-color-line red"></div>
     <div class="flag-color-line yellow"></div>
     <div class="flag-color-line black"></div>
@@ -13,8 +17,16 @@ export default {
       animate: false,
     }
   },
+  computed() {
+    return {
+      showFlagLines() {
+        return process.env.NODE_ENV === 'production'
+      },
+    }
+  },
   mounted() {
     const me = this
+
     setTimeout(() => {
       me.animate = true
     }, 1000)
@@ -54,17 +66,17 @@ $color-list: (
   transition: height #{$animation-duration-in-seconds}s ease-out;
 
   &.red {
-    background-color: $red;
+    background-color: red;
     height: 100%;
     z-index: 999;
   }
   &.yellow {
-    background-color: $yellow;
+    background-color: yellow;
     height: 100%;
     z-index: 998;
   }
   &.black {
-    background-color: $black;
+    background-color: black;
     height: 100%;
     z-index: 997;
   }
