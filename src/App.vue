@@ -10,7 +10,7 @@
           alt="Github logo"
         />
 
-        <h1 class="home-header-title flag-color-animation">
+        <h1 class="home-header-title">
           Angolanos no Github
         </h1>
         <h2 class="home-header-subtitle">
@@ -87,9 +87,7 @@ export default {
     window.onscroll = this.fetchUsersOnScrollToBottom
 
     this.fetchUsers()
-
-    document.title = 'Programadores em Angola'
-  },
+  }
 }
 </script>
 
