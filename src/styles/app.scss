@@ -10,6 +10,18 @@ body,
   height: 100%;
 }
 
+.main {
+  &::before {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    z-index: -1;
+  }
+}
+
 body {
   font-size: 18px;
   font-weight: 500;

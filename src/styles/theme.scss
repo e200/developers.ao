@@ -21,8 +21,11 @@ $github-user-dark-shadow: #121212;
   }
 
   &-light {
-    background-color: #fbfbfb;
     color: $black;
+
+    &::before {
+      background-color: #fbfbfb;
+    }
 
     .home-header {
       &-subtitle {
@@ -49,8 +52,11 @@ $github-user-dark-shadow: #121212;
   }
 
   &-dark {
-    background-color: $dark-background-color;
     color: $white;
+
+    &::before {
+      background-color: $dark-background-color;
+    }
 
     .home-header {
       &-subtitle {

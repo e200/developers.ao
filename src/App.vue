@@ -2,7 +2,7 @@
   <flag-colors />
 
   <main class="main" :class="classes">
-    <div class="container">      
+    <div class="container">
       <header class="home-header">
         <img
           class="home-header-logo"
@@ -10,9 +10,7 @@
           alt="Github logo"
         />
 
-        <h1 class="home-header-title">
-          Angolanos no Github
-        </h1>
+        <h1 class="home-header-title">Angolanos no Github</h1>
         <h2 class="home-header-subtitle">
           Conheça os Angolanos que contribuem para projectos Open-Source
         </h2>
@@ -61,7 +59,7 @@ export default {
       return {
         'theme-dark': true,
       }
-    }
+    },
   },
   methods: {
     fetchUsers() {
@@ -87,7 +85,7 @@ export default {
     window.onscroll = this.fetchUsersOnScrollToBottom
 
     this.fetchUsers()
-  }
+  },
 }
 </script>
 
