@@ -20,7 +20,9 @@ export default {
   computed() {
     return {
       showFlagLines() {
-        return process.env.NODE_ENV === 'production'
+        // return process.env.NODE_ENV === 'production'
+
+        return true
       },
     }
   },
