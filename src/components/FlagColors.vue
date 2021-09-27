@@ -2,7 +2,6 @@
   <div
     class="flag-color-lines"
     :class="{ animate: animate }"
-    v-if="showFlagLines"
   >
     <div class="flag-color-line red"></div>
     <div class="flag-color-line yellow"></div>
@@ -15,15 +14,6 @@ export default {
   data() {
     return {
       animate: false,
-    }
-  },
-  computed() {
-    return {
-      showFlagLines() {
-        // return process.env.NODE_ENV === 'production'
-
-        return true
-      },
     }
   },
   mounted() {
