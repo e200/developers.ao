@@ -36,7 +36,7 @@ export default {
 
       try {
         const result = await http.get(
-          `/search/users?q=%20location:Angola+location:luanda&sort=&per_page=${limit}&page=${page}`
+          `/search/users?q=%20location:Angola&sort=&per_page=${limit}&page=${page}`
         )
 
         const { data } = result
