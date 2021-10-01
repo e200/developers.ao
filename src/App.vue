@@ -1,15 +1,11 @@
 <template>
   <flag-colors />
+  
+  <app-bar />
 
-  <main class="main" :class="classes">
+  <main class="main">
     <div class="container">
       <header class="home-header">
-        <img
-          class="home-header-logo"
-          src="./assets/github-light.png"
-          alt="Github logo"
-        />
-
         <h1 class="home-header-title">Angolanos no Github</h1>
         <h2 class="home-header-subtitle">
           Conheça os Angolanos que contribuem para projectos Open-Source
@@ -35,6 +31,7 @@
 import FlagColors from './components/FlagColors'
 import GithubUsers from './components/GithubUsers'
 import Spinner from './components/Spinner'
+import AppBar from './components/AppBar'
 
 import store from './store'
 
@@ -44,6 +41,7 @@ export default {
     FlagColors,
     GithubUsers,
     Spinner,
+    AppBar,
   },
   computed: {
     users() {
@@ -54,11 +52,6 @@ export default {
     },
     total() {
       return store.state.users.total
-    },
-    classes() {
-      return {
-        'theme-dark': true,
-      }
     },
   },
   methods: {

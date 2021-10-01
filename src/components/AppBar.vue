@@ -1,0 +1,229 @@
+<template>
+  <div class="app-bar">
+    <div class="container">
+      <button class="app-bar-button" @click="toggleThemeMode">
+        <span class="material-icons">{{ themeMode }}_mode</span>
+      </button>
+
+      <a class="app-bar-home-link" href="/"
+        ><i class="fa fa-github" aria-hidden="true"></i
+      ></a>
+
+      <button class="app-bar-button" @click="toggleMenuVisibility">
+        <span class="material-icons">menu</span>
+      </button>
+
+      <slide-up-down v-model="isMenuVisible" :duration="300">
+        <div class="app-bar-menu">
+          <div class="container">
+            <div class="app-bar-search-form">
+              <input
+                class="app-bar-menu-search-input"
+                placeholder="Procurar programadores..."
+              />
+
+              <div class="app-bar-menu-filters">
+                <span class="app-bar-menu-filters-title">Ordenar por:</span>
+                
+                <select class="app-bar-menu-filters-option">
+                  <option
+                    v-for="(value, key) in sortOptions"
+                    :key="key"
+                    :value="key"
+                  >
+                    {{ value }}
+                  </option>
+                </select>
+                <select class="app-bar-menu-filters-option">
+                  <option
+                    v-for="(value, key) in orderOptions"
+                    :key="key"
+                    :value="key"
+                  >
+                    {{ value }}
+                  </option>
+                </select>
+              </div>
+            </div>
+
+            <ul class="app-bar-menu-list">
+              <li>
+                <a
+                  class="app-bar-menu-list-link"
+                  href="https://t.me/joinchat/Sq9PhrG161A3ceTP"
+                  target="_blank"
+                  >Estamos no Telegram 🙋</a
+                >
+              </li>
+              <li>
+                <a
+                  class="app-bar-menu-list-link"
+                  href="https://github.com/e200/developers.ao"
+                  target="_blank"
+                  >Ajude o projecto 🎉</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </slide-up-down>
+    </div>
+  </div>
+</template>
+
+<script>
+import SlideUpDown from 'vue3-slide-up-down'
+
+import store from '../store'
+
+export default {
+  components: {
+    SlideUpDown,
+  },
+  data() {
+    return {
+      isMenuVisible: false,
+      sortOptions: {
+        '': 'Melhor resultado',
+        joined: 'Mais recentes',
+        followers: 'Mais seguidores',
+        repositories: 'Mais repositórios',
+      },
+      orderOptions: {
+        asc: 'Ascendente',
+        desc: 'Descendente',
+      },
+    }
+  },
+  computed: {
+    themeMode() {
+      return store.state.themeMode
+    },
+  },
+  methods: {
+    toggleMenuVisibility() {
+      this.isMenuVisible = !this.isMenuVisible
+    },
+    toggleThemeMode() {
+      const oldThemeMode = this.themeMode
+      const newThemeMode = oldThemeMode === 'light' ? 'dark' : 'light'
+
+      document.body.classList.remove(`theme-${oldThemeMode}`)
+      document.body.classList.add(`theme-${newThemeMode}`)
+
+      store.commit('themeMode', newThemeMode)
+    },
+  },
+}
+</script>
+
+<style lang="scss">
+$menu-color: #1e2124;
+
+.app-bar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: $app-bar-height;
+  background: $menu-color;
+  box-shadow: 0 0 4px #00000078;
+  z-index: 999;
+
+  & > .container {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-home-link {
+    color: $white;
+    font-size: 26px;
+  }
+
+  &-button {
+    cursor: pointer;
+    outline: none;
+    border: none;
+    background: transparent;
+
+    > .material-icons {
+      color: #e6e6e6;
+    }
+  }
+
+  &-logo {
+    width: 40px;
+  }
+
+  .slide-up-down__container {
+    position: absolute;
+    top: $app-bar-height - 16px;
+    left: 0;
+    right: 0;
+
+    @media (min-width: 560px) {
+      max-width: 300px;
+      left: auto;
+      right: 0;
+    }
+  }
+
+  &-menu {
+    background: $menu-color;
+    box-shadow: 0 0 4px #00000078;
+
+    @media (min-width: 560px) {
+      border-radius: 0 0 5px 5px;
+    }
+
+    &-search-input {
+      width: 100%;
+      padding: 5px 10px;
+      margin: 10px 0;
+      background-color: #f3f3f3;
+      border-radius: 5px;
+      border: 1px solid #000;
+
+      &::placeholder {
+        font-weight: 500;
+      }
+    }
+
+    &-filters {
+      &-title {
+        display: block;
+        margin-bottom: .5em;
+        color: #888888;
+      }
+
+      &-option {
+        width: 100%;
+        
+        &:first {
+          margin-bottom: .5em;
+        }
+      }
+    }
+
+    &-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      &-link {
+        display: block;
+        color: $white;
+        text-decoration: none;
+        font-weight: 500;
+        padding: 10px 0;
+        border-top: 1px solid #252525;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+</style>
