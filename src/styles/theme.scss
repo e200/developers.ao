@@ -3,45 +3,36 @@ $dark-background-color: #212528;
 $github-user-dark-shadow: #121212;
 
 .theme {
+  transition: background-color $transition-time;
+
   .home-header {
 
     &-subtitle {
       font-weight: 500
     }
-
-    &-subtitle,
-    &-title,
+    
     &-description {
-      transition: $transition-time;
+      font-weight: 500;
     }
-  }
-
-  .github-user-name {
-    transition: $transition-time;
   }
 
   &-light {
     color: $black;
 
-    &::before {
-      background-color: #fbfbfb;
-    }
-
     .home-header {
       &-subtitle {
-        color: #515151
+        color: #404040
       }
 
       &-description {
         color: #606060;
-        font-size: 1em;
       }
     }
 
     .github-user {
       &-picture {
         &-wrapper {
-          box-shadow: 0px 3px 4px rgba($black, 0.1);
+          box-shadow: 0px 3px 4px rgba($black, 0.3);
         }
       }
     }
@@ -53,10 +44,7 @@ $github-user-dark-shadow: #121212;
 
   &-dark {
     color: $white;
-
-    &::before {
-      background-color: $dark-background-color;
-    }
+    background-color: $dark-background-color;
 
     .home-header {
       &-subtitle {
