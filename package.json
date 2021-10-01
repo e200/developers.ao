@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "vue": "^3.0.0",
     "vue-gtag": "^2.0.1",
+    "vue3-slide-up-down": "^1.2.3",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
