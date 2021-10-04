@@ -2,7 +2,9 @@
   <div class="app-bar">
     <div class="container">
       <button class="app-bar-button" @click="toggleThemeMode">
-        <span class="material-icons">{{ themeMode }}_mode</span>
+        <span class="material-icons"
+          >{{ themeMode === 'dark' ? 'light' : 'dark' }}_mode</span
+        >
       </button>
 
       <a class="app-bar-home-link" href="/"
@@ -24,7 +26,7 @@
 
               <div class="app-bar-menu-filters">
                 <span class="app-bar-menu-filters-title">Ordenar por:</span>
-                
+
                 <select class="app-bar-menu-filters-option">
                   <option
                     v-for="(value, key) in sortOptions"
@@ -120,14 +122,23 @@ export default {
 <style lang="scss">
 $menu-color: #1e2124;
 
+@keyframes appBarSlideOut {
+  to {
+    height: $app-bar-height;
+  }
+}
+
 .app-bar {
-  position: fixed;
+  position: relative;
   left: 0;
   top: 0;
   right: 0;
-  height: $app-bar-height;
+  height: 100%;
   background: $menu-color;
   box-shadow: 0 0 4px #00000078;
+  animation: appBarSlideOut 1s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
   z-index: 999;
 
   & > .container {
@@ -196,15 +207,15 @@ $menu-color: #1e2124;
     &-filters {
       &-title {
         display: block;
-        margin-bottom: .5em;
+        margin-bottom: 0.5em;
         color: #888888;
       }
 
       &-option {
         width: 100%;
-        
+
         &:first {
-          margin-bottom: .5em;
+          margin-bottom: 0.5em;
         }
       }
     }
