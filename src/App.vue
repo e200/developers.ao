@@ -1,6 +1,6 @@
 <template>
   <flag-colors />
-  
+
   <app-bar />
 
   <main class="main">
