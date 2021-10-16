@@ -23,28 +23,34 @@
                 class="app-bar-menu-search-input"
                 placeholder="Procurar programadores..."
               />
-
               <div class="app-bar-menu-filters">
-                <span class="app-bar-menu-filters-title">Ordenar por:</span>
+                <span class="app-bar-menu-filters-title">Lista</span>
 
-                <select class="app-bar-menu-filters-option">
-                  <option
-                    v-for="(value, key) in sortOptions"
+                <div class="app-bar-menu-filters-tags">
+                  <filter-tag
+                    class="app-bar-menu-filters-tag"
+                    v-for="(key, value) in sortOptions"
                     :key="key"
-                    :value="key"
-                  >
-                    {{ value }}
-                  </option>
-                </select>
-                <select class="app-bar-menu-filters-option">
-                  <option
-                    v-for="(value, key) in orderOptions"
+                    :title="key"
+                    :active="value === sort"
+                    @click="updateSort(value)"
+                  />
+                </div>
+
+                <br />
+
+                <span class="app-bar-menu-filters-title">Ordem</span>
+
+                <div class="app-bar-menu-filters-tags">
+                  <filter-tag
+                    class="app-bar-menu-filters-tag"
+                    v-for="(key, value) in orderOptions"
                     :key="key"
-                    :value="key"
-                  >
-                    {{ value }}
-                  </option>
-                </select>
+                    :title="key"
+                    :active="value === order"
+                    @click="updateOrder(value)"
+                  />
+                </div>
               </div>
             </div>
 
@@ -75,12 +81,12 @@
 
 <script>
 import SlideUpDown from 'vue3-slide-up-down'
-
-import store from '../store'
+import FilterTag from '../components/FilterTag'
 
 export default {
   components: {
     SlideUpDown,
+    FilterTag,
   },
   data() {
     return {
