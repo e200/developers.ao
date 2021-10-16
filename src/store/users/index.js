@@ -41,16 +41,16 @@ export default {
     }
   },
   actions: {
-    async fetch({ state, commit, }) {
+    async fetch({ state, commit }) {
       commit('isFetching', true)
-      
-      const { order, sort, page, limit } = state.filters
-      
+
+      const { order, sort, page, limit, search } = state.filters
+
       const nextPage = page + 1
 
       try {
         const result = await http.get(
-          `/search/users?q=location:Angola&order=${order}&sort=${sort}&per_page=${limit}&page=${nextPage}`
+          `/search/users?q=${search}+location:Angola&order=${order}&sort=${sort}&per_page=${limit}&page=${nextPage}`
         )
 
         const { data } = result
@@ -68,7 +68,6 @@ export default {
       } catch (error) {
         commit('error', error)
       } finally {
-
         commit('isFetching', false)
       }
     },
