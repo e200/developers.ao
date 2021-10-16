@@ -82,7 +82,8 @@ export default {
 @import './styles/app.scss';
 
 .app-ready #app {
-  margin-top: $app-bar-height;
+  // 4px = 2px red flag line + 2px yellow flag line
+  margin-top: $app-bar-height + 4px;
 }
 
 .home {
