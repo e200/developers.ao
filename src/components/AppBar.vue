@@ -80,6 +80,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import SlideUpDown from 'vue3-slide-up-down'
 import FilterTag from '../components/FilterTag'
 
@@ -104,6 +106,7 @@ export default {
     }
   },
   computed: {
+    ...mapState(['themeMode']),
     ...mapState('users/filters', ['sort', 'order']),
   },
   methods: {
