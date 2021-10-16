@@ -12,6 +12,20 @@
   }
 }
 
+.app-ready {
+  .flag-color-line {
+    position: fixed;
+    
+    &.red {
+      top: 0;
+    }
+    
+    &.yellow {
+      top: 2px;
+    }
+  }
+}
+
 .flag-color-line {
   width: 100%;
   height: 100%;

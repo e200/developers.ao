@@ -98,9 +98,9 @@ export default {
       isMenuVisible: false,
       sortOptions: {
         '': 'Padrão',
-        joined: 'Recentes',
-        followers: 'Seguidores',
-        repositories: 'Repositórios',
+        joined: 'Mais Recentes',
+        followers: 'Mais Seguidores',
+        repositories: 'Mais Repositórios',
       },
       orderOptions: {
         asc: 'Ascendente',
@@ -150,6 +150,11 @@ $menu-color: #1e2124;
   to {
     height: $app-bar-height;
   }
+}
+
+.app-ready .app-bar {
+  position: fixed;
+  top: 4px;
 }
 
 .app-bar {
@@ -224,20 +229,19 @@ $menu-color: #1e2124;
       border-radius: 5px;
       border: 1px solid #000;
       
-      &:placeholder {
+      &::placeholder {
         font-family: $font-family;
         font-weight: 600;
       }
     }
 
     &-filters {
-      font-size: 0.8em;
       font-weight: 600;
 
       &-title {
         display: inline;
-        margin-bottom: 0.5em;
-        margin-right: 0.5em;
+        margin-bottom: .5em;
+        margin-right: .5em;
         color: #888888;
       }
 

@@ -69,6 +69,10 @@ export default {
     window.onscroll = this.fetchUsersOnScrollToBottom
 
     this.fetchUsers()
+    
+    setTimeout(() => {
+      document.body.classList.add('app-ready')
+    }, 4000)
   },
   store,
 }
@@ -76,6 +80,10 @@ export default {
 
 <style lang="scss">
 @import './styles/app.scss';
+
+.app-ready #app {
+  margin-top: $app-bar-height;
+}
 
 .home {
   &-header {
