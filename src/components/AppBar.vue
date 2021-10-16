@@ -22,6 +22,7 @@
               <input
                 class="app-bar-menu-search-input"
                 placeholder="Procurar programadores..."
+                v-model="searchText"
               />
             </div>
 
@@ -95,6 +96,8 @@ export default {
   },
   data() {
     return {
+      searchText: '',
+      timeOutInstance: null,
       isMenuVisible: false,
       sortOptions: {
         '': 'Padrão',
@@ -138,6 +141,21 @@ export default {
       this.$store.commit('users/filters/order', order)
 
       this.$store.dispatch('users/fetch')
+    },
+  },
+  watch: {
+    searchText() {
+      if (this.timeOutInstance) {
+        clearTimeout(this.timeOutInstance)
+      }
+
+      this.timeOutInstance = setTimeout(() => {
+        this.$store.commit('users/clearUsers')
+
+        this.$store.commit('users/filters/search', this.searchText)
+
+        this.$store.dispatch('users/fetch')
+      }, 300)
     },
   },
 }
@@ -225,14 +243,11 @@ $menu-color: #1e2124;
       width: 100%;
       padding: 10px;
       margin: 10px 0;
+      font-family: $font-family;
+      font-weight: 600;
       background-color: #f3f3f3;
       border-radius: 5px;
       border: 1px solid #000;
-      
-      &::placeholder {
-        font-family: $font-family;
-        font-weight: 600;
-      }
     }
 
     &-filters {
