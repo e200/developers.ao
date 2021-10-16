@@ -50,9 +50,7 @@ export default {
   },
   methods: {
     fetchUsers() {
-      store.dispatch('users/fetch', {
-        limit: 36,
-      })
+      this.$store.dispatch('users/fetch')
     },
     fetchUsersOnScrollToBottom() {
       // https://stackoverflow.com/a/44077777/6362415
@@ -61,8 +59,7 @@ export default {
 
       if (
         scrollHeight == window.scrollY &&
-        this.hasUsers &&
-        !store.state.users.isFetching
+        !this.isFetching
       ) {
         this.fetchUsers()
       }
