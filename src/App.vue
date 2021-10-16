@@ -54,6 +54,7 @@ export default {
   },
   computed: {
     ...mapGetters('users', ['hasUsers']),
+    ...mapState('users', ['users', 'count', 'isFetching', 'isFirstFetch']),
   },
   methods: {
     fetchUsers() {
@@ -73,7 +74,7 @@ export default {
     window.onscroll = this.fetchUsersOnScrollToBottom
 
     this.fetchUsers()
-    
+
     setTimeout(() => {
       document.body.classList.add('app-ready')
     }, 4000)

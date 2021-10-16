@@ -5,12 +5,16 @@ import filters from './filters'
 export default {
   namespaced: true,
   state: {
+    isFirstFetch: true,
     isFetching: false,
     count: null,
     error: null,
     users: [],
   },
   mutations: {
+    isFirstFetch(state, value) {
+      state.isFirstFetch = value
+    },
     isFetching(state, value) {
       state.isFetching = value
     },
@@ -25,7 +29,9 @@ export default {
     },
     clearUsers(state) {
       state.users = []
-      
+
+      state.isFirstFetch = true
+
       state.filters.page = 0
     },
   },
@@ -50,6 +56,10 @@ export default {
         commit('count', count)
 
         commit('filters/page', nextPage)
+
+        if (state.isFirstFetch) {
+          commit('isFirstFetch', false)
+        }
       } catch (error) {
         commit('error', error)
       } finally {
