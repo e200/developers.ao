@@ -35,6 +35,11 @@ export default {
       state.filters.page = 0
     },
   },
+  getters: {
+    hasUsers(state) {
+      return state.count > state.users.length
+    }
+  },
   actions: {
     async fetch({ state, commit, }) {
       commit('isFetching', true)
