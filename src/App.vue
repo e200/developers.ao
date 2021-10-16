@@ -20,7 +20,11 @@
       </header>
 
       <transition name="fade" mode="out-in">
-        <github-users v-if="users" :users="users" />
+        <github-users
+          v-if="!isFetching && users"
+          :users="users"
+          :has-users="hasUsers"
+        />
         <spinner v-else class="spinner" />
       </transition>
 
