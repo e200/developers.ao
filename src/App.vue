@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 import FlagColors from './components/FlagColors'
 import GithubUsers from './components/GithubUsers'
@@ -53,7 +53,7 @@ export default {
     AppBar,
   },
   computed: {
-    ...mapState('users', ['users', 'count', 'isFetching']),
+    ...mapGetters('users', ['hasUsers']),
   },
   methods: {
     fetchUsers() {
@@ -64,10 +64,7 @@ export default {
       const scrollHeight =
         document.documentElement.scrollHeight - window.innerHeight
 
-      if (
-        scrollHeight == window.scrollY &&
-        !this.isFetching
-      ) {
+      if (scrollHeight == window.scrollY && !this.isFetching && this.hasUsers) {
         this.fetchUsers()
       }
     },

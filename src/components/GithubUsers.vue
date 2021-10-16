@@ -1,15 +1,19 @@
 <template>
   <section class="github-users">
     <div class="row">
-      <div
-        class="col-6 col-lg-2 col-md-3 col-sm-4"
-        v-for="user in users"
-        :key="user.login"
-      >
-        <github-user :user="user" />
-      </div>
+      <template v-if="users.length">
+        <div
+          class="col-6 col-lg-2 col-md-3 col-sm-4"
+          v-for="user in users"
+          :key="user.login"
+        >
+          <github-user :user="user" />
+        </div>
+      </template>
 
-      <spinner class="spinner" />
+      <p class="github-users-no-results" v-else>Sem resultados...</p>
+
+      <spinner v-if="hasUsers" class="spinner" />
     </div>
   </section>
 </template>
@@ -20,6 +24,10 @@ import Spinner from './Spinner'
 
 export default {
   props: {
+    hasUsers: {
+      required: true,
+      type: Boolean,
+    },
     users: {
       required: true,
       type: Object,
@@ -31,3 +39,13 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.github-users {
+  &-no-results {
+    color: grey;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+</style>
