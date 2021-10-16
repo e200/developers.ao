@@ -1,51 +1,55 @@
-import http from "../../services/http";
+import http from '../../services/http'
+
+import filters from './filters'
 
 export default {
   namespaced: true,
   state: {
     isFetching: false,
-    page: 1,
-    limit: 32,
-    total: undefined,
-    error: undefined,
-    items: [],
+    count: null,
+    error: null,
+    users: [],
   },
   mutations: {
-    total(state, value) {
-      state.total = value
+    isFetching(state, value) {
+      state.isFetching = value
+    },
+    count(state, value) {
+      state.count = value
     },
     error(state, value) {
       state.error = value
     },
-    isFetching(state, value) {
-      state.isFetching = value
+    appendUsers(state, users) {
+      state.users = state.users.concat(users)
     },
-    incrementPage(state) {
-      state.page++
+    clearUsers(state) {
+      state.users = []
+      
+      state.filters.page = 0
     },
-    users(state, users) {
-      state.items = state.items.concat(users)
-    }
   },
   actions: {
-    async fetch({ commit, state }, pagination) {
-      const { page } = state
-      const { limit } = pagination
-
+    async fetch({ state, commit, }) {
       commit('isFetching', true)
+      
+      const { order, sort, page, limit } = state.filters
+      
+      const nextPage = page + 1
 
       try {
         const result = await http.get(
-          `/search/users?q=location:Angola&order=asc&per_page=${limit}&page=${page}`
+          `/search/users?q=location:Angola&order=${order}&sort=${sort}&per_page=${limit}&page=${nextPage}`
         )
 
         const { data } = result
-        const { items, total_count } = data
 
-        commit('users', items)
-        commit('total', total_count)
+        const { items: users, total_count: count } = data
 
-        commit('incrementPage')
+        commit('appendUsers', users)
+        commit('count', count)
+
+        commit('filters/page', nextPage)
       } catch (error) {
         commit('error', error)
       } finally {
@@ -53,5 +57,8 @@ export default {
         commit('isFetching', false)
       }
     },
+  },
+  modules: {
+    filters,
   }
 }

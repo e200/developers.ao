@@ -104,9 +104,7 @@ export default {
     }
   },
   computed: {
-    themeMode() {
-      return store.state.themeMode
-    },
+    ...mapState('users/filters', ['sort', 'order']),
   },
   methods: {
     toggleMenuVisibility() {
