@@ -1,7 +1,7 @@
 <template>
   <div class="app-bar">
     <div class="container">
-      <button class="app-bar-button" @click="toggleThemeMode">
+      <button class="app-bar-button" @click="toggleTheme">
         <span class="material-icons"
           >{{ themeMode === 'dark' ? 'light' : 'dark' }}_mode</span
         >
@@ -110,7 +110,7 @@ export default {
     toggleMenuVisibility() {
       this.isMenuVisible = !this.isMenuVisible
     },
-    toggleThemeMode() {
+    toggleTheme() {
       const oldThemeMode = this.themeMode
       const newThemeMode = oldThemeMode === 'light' ? 'dark' : 'light'
 
