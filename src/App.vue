@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import FlagColors from './components/FlagColors'
 import GithubUsers from './components/GithubUsers'
 import Spinner from './components/Spinner'
@@ -44,15 +46,7 @@ export default {
     AppBar,
   },
   computed: {
-    users() {
-      return store.state.users.items
-    },
-    hasUsers() {
-      return this.users && this.total !== this.users.length
-    },
-    total() {
-      return store.state.users.total
-    },
+    ...mapState('users', ['users', 'count', 'isFetching']),
   },
   methods: {
     fetchUsers() {
@@ -79,6 +73,7 @@ export default {
 
     this.fetchUsers()
   },
+  store,
 }
 </script>
 
