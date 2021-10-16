@@ -12,7 +12,10 @@
         </h2>
 
         <h3 class="home-header-description">
-          {{ count }} desenvolvedores residentes em Angola. Conheça eles:
+          {{ count }} desenvolvedor{{ count !== 1 ? 'es' : '' }} residente{{
+            count !== 1 ? 's' : ''
+          }}
+          em Angola. Conheça eles:
         </h3>
       </header>
 
