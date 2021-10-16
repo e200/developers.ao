@@ -15,7 +15,7 @@
         <span class="material-icons">menu</span>
       </button>
 
-      <slide-up-down v-model="isMenuVisible" :duration="300">
+      <slide-up-down v-model="isMenuVisible" :duration="1000">
         <div class="app-bar-menu">
           <div class="container">
             <div class="app-bar-search-form">
@@ -23,7 +23,10 @@
                 class="app-bar-menu-search-input"
                 placeholder="Procurar programadores..."
               />
-              <div class="app-bar-menu-filters">
+            </div>
+
+            <div class="app-bar-menu-filters">
+              <div class="app-bar-menu-filters-wrapper">
                 <span class="app-bar-menu-filters-title">Lista</span>
 
                 <div class="app-bar-menu-filters-tags">
@@ -36,9 +39,9 @@
                     @click="updateSort(value)"
                   />
                 </div>
+              </div>
 
-                <br />
-
+              <div class="app-bar-menu-filters-wrapper">
                 <span class="app-bar-menu-filters-title">Ordem</span>
 
                 <div class="app-bar-menu-filters-tags">
@@ -60,7 +63,7 @@
                   class="app-bar-menu-list-link"
                   href="https://t.me/joinchat/Sq9PhrG161A3ceTP"
                   target="_blank"
-                  >Estamos no Telegram 🙋</a
+                  >Nosso Telegram</a
                 >
               </li>
               <li>
@@ -68,7 +71,7 @@
                   class="app-bar-menu-list-link"
                   href="https://github.com/e200/developers.ao"
                   target="_blank"
-                  >Ajude o projecto 🎉</a
+                  >Ver código</a
                 >
               </li>
             </ul>
@@ -94,10 +97,10 @@ export default {
     return {
       isMenuVisible: false,
       sortOptions: {
-        '': 'Melhor resultado',
-        joined: 'Mais recentes',
-        followers: 'Mais seguidores',
-        repositories: 'Mais repositórios',
+        '': 'Padrão',
+        joined: 'Recentes',
+        followers: 'Seguidores',
+        repositories: 'Repositórios',
       },
       orderOptions: {
         asc: 'Ascendente',
@@ -120,7 +123,21 @@ export default {
       document.body.classList.remove(`theme-${oldThemeMode}`)
       document.body.classList.add(`theme-${newThemeMode}`)
 
-      store.commit('themeMode', newThemeMode)
+      this.$store.commit('themeMode', newThemeMode)
+    },
+    updateSort(sort) {
+      this.$store.commit('users/clearUsers')
+
+      this.$store.commit('users/filters/sort', sort)
+
+      this.$store.dispatch('users/fetch')
+    },
+    updateOrder(order) {
+      this.$store.commit('users/clearUsers')
+
+      this.$store.commit('users/filters/order', order)
+
+      this.$store.dispatch('users/fetch')
     },
   },
 }
@@ -141,6 +158,7 @@ $menu-color: #1e2124;
   top: 0;
   right: 0;
   height: 100%;
+  font-weight: 600;
   background: $menu-color;
   box-shadow: 0 0 4px #00000078;
   animation: appBarSlideOut 1s;
@@ -200,30 +218,31 @@ $menu-color: #1e2124;
 
     &-search-input {
       width: 100%;
-      padding: 5px 10px;
+      padding: 10px;
       margin: 10px 0;
       background-color: #f3f3f3;
       border-radius: 5px;
       border: 1px solid #000;
-
-      &::placeholder {
-        font-weight: 500;
+      
+      &:placeholder {
+        font-family: $font-family;
+        font-weight: 600;
       }
     }
 
     &-filters {
+      font-size: 0.8em;
+      font-weight: 600;
+
       &-title {
-        display: block;
+        display: inline;
         margin-bottom: 0.5em;
+        margin-right: 0.5em;
         color: #888888;
       }
 
-      &-option {
-        width: 100%;
-
-        &:first {
-          margin-bottom: 0.5em;
-        }
+      &-tags {
+        display: inline;
       }
     }
 
@@ -236,10 +255,8 @@ $menu-color: #1e2124;
         display: block;
         color: $white;
         text-decoration: none;
-        font-weight: 500;
         padding: 10px 0;
         border-top: 1px solid #252525;
-        text-transform: uppercase;
       }
     }
   }
