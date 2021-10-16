@@ -11,8 +11,6 @@ export default createStore({
       state.themeMode = value
     }
   },
-  actions: {
-  },
   modules: {
     users,
   }
