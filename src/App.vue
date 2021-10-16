@@ -77,7 +77,7 @@ export default {
 
     setTimeout(() => {
       document.body.classList.add('app-ready')
-    }, 4000)
+    }, 5000)
   },
   store,
 }
