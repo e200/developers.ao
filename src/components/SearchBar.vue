@@ -1,8 +1,7 @@
 <template>
-  <div class="search-bar">
+  <div class="search-bar" :class="classes">
     <form class="search-bar-form">
       <input
-        :class="classes"
         ref="input"
         class="search-bar-input"
         placeholder="Procurar..."
@@ -62,10 +61,14 @@ export default {
   margin: 15px;
   display: flex;
   flex-direction: row;
-  background-color: $white;
-  box-shadow: 0 1px 4px rgba(black, 0.2);
   border-radius: 35px;
   z-index: 500;
+
+  &.active &-input {
+    width: 200px;
+    padding: 0 20px;
+    opacity: 1;
+  }
 
   &-input {
     width: 0;
@@ -78,13 +81,7 @@ export default {
     border: none;
     outline: none;
     border-radius: 35px;
-    transition: .3s;
-
-    &.active {
-      width: 200px;
-      padding: 0 20px;
-      opacity: 1;
-    }
+    transition: 0.3s;
   }
 
   &-button {
