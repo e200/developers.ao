@@ -82,13 +82,13 @@ export default {
       }
 
       this.timeOutInstance = setTimeout(() => {
-        _me.$store.commit('users/clearUsers')
-
         if (_me.$store.state.users.filters.search !== text) {
-          _me.$store.commit('users/filters/search', text)
-        }
+          _me.$store.commit('users/clearUsers')
 
-        _me.$store.dispatch('users/fetch')
+          _me.$store.commit('users/filters/search', text)
+
+          _me.$store.dispatch('users/fetch')
+        }
       }, 300)
     },
   },

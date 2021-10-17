@@ -11,7 +11,7 @@
         </div>
       </template>
 
-      <p class="github-users-no-results" v-else>Sem resultados...</p>
+      <!--<p class="github-users-no-results" v-else>Sem resultados...</p>-->
 
       <spinner v-if="hasUsers" class="spinner" />
     </div>
