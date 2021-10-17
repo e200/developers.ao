@@ -89,7 +89,7 @@ export default {
 
           _me.$store.dispatch('users/fetch')
         }
-      }, 300)
+      }, 600)
     },
   },
   mounted() {
