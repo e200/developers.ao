@@ -27,6 +27,7 @@
 }
 
 .flag-color-line {
+  position: relative;
   width: 100%;
   height: 100%;
   animation: flagLineSlideOut 1s ease-out;
