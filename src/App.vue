@@ -21,7 +21,7 @@
 
       <transition name="fade" mode="out-in">
         <github-users
-          v-if="!isFetching && users"
+          v-if="!isFirstFetch && users"
           :users="users"
           :has-users="hasUsers"
         />
@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     ...mapGetters('users', ['hasUsers']),
-    ...mapState('users', ['users', 'count', 'isFetching', 'isFirstFetch']),
+    ...mapState('users', ['users', 'count', 'isFirstFetch']),
   },
   methods: {
     fetchUsers() {
@@ -73,11 +73,11 @@ export default {
   mounted() {
     window.onscroll = this.fetchUsersOnScrollToBottom
 
-    this.fetchUsers()
-
     setTimeout(() => {
       document.body.classList.add('app-ready')
     }, 5000)
+
+    this.fetchUsers()
   },
   store,
 }
