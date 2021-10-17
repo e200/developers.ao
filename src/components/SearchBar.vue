@@ -40,10 +40,6 @@ export default {
         this.searchText = ''
       } else {
         this.active = !this.active
-
-        if (this.active) {
-          this.$refs.input.focus()
-        }
       }
 
       this.$emit('change', this.searchText)
@@ -69,6 +65,7 @@ export default {
   background-color: $white;
   box-shadow: 0 1px 4px rgba(black, 0.2);
   border-radius: 35px;
+  z-index: 500;
 
   &-input {
     width: 0;
@@ -81,7 +78,7 @@ export default {
     border: none;
     outline: none;
     border-radius: 35px;
-    transition: 1s;
+    transition: .3s;
 
     &.active {
       width: 200px;
