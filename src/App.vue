@@ -30,6 +30,8 @@
 
       <br />
       <br />
+
+      <search-bar @change="searchUsers" />
     </div>
   </main>
 </template>
@@ -41,16 +43,23 @@ import FlagColors from './components/FlagColors'
 import GithubUsers from './components/GithubUsers'
 import Spinner from './components/Spinner'
 import AppBar from './components/AppBar'
+import SearchBar from './components/SearchBar'
 
 import store from './store'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      timeOutInstance: null,
+    }
+  },
   components: {
     FlagColors,
     GithubUsers,
     Spinner,
     AppBar,
+    SearchBar,
   },
   computed: {
     ...mapGetters('users', ['hasUsers']),
@@ -68,6 +77,23 @@ export default {
       if (scrollHeight == window.scrollY && !this.isFetching && this.hasUsers) {
         this.fetchUsers()
       }
+    },
+    searchUsers(text) {
+      const me = this
+      
+      if (this.timeOutInstance) {
+        clearTimeout(this.timeOutInstance)
+      }
+
+      this.timeOutInstance = setTimeout(() => {
+        if (me.$store.state.users.filters.search !== text) {
+          me.$store.commit('users/clearUsers')
+
+          me.$store.commit('users/filters/search', text)
+
+          me.$store.dispatch('users/fetch')
+        }
+      }, 300)
     },
   },
   mounted() {
