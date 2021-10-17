@@ -20,12 +20,8 @@
       </header>
 
       <transition name="fade" mode="out-in">
-        <github-users
-          v-if="!isFirstFetch && users"
-          :users="users"
-          :has-users="hasUsers"
-        />
-        <spinner v-else class="spinner" />
+        <spinner v-if="isFirstFetch && !users" class="spinner" />
+        <github-users v-else :users="users" :has-users="hasUsers" />
       </transition>
 
       <br />
@@ -79,20 +75,20 @@ export default {
       }
     },
     searchUsers(text) {
-      const me = this
-      
+      const _me = this
+
       if (this.timeOutInstance) {
         clearTimeout(this.timeOutInstance)
       }
 
       this.timeOutInstance = setTimeout(() => {
-        if (me.$store.state.users.filters.search !== text) {
-          me.$store.commit('users/clearUsers')
+        _me.$store.commit('users/clearUsers')
 
-          me.$store.commit('users/filters/search', text)
-
-          me.$store.dispatch('users/fetch')
+        if (_me.$store.state.users.filters.search !== text) {
+          _me.$store.commit('users/filters/search', text)
         }
+
+        _me.$store.dispatch('users/fetch')
       }, 300)
     },
   },

@@ -1,7 +1,7 @@
 <template>
   <section class="github-users">
     <div class="row">
-      <template v-if="users.length">
+      <template v-if="users.length > 0">
         <div
           class="col-6 col-lg-2 col-md-3 col-sm-4"
           v-for="user in users"

@@ -50,7 +50,7 @@ export default {
 
       try {
         const result = await http.get(
-          `/search/users?q=${search + '+'}location:Angola&order=${order}&sort=${sort}&per_page=${limit}&page=${nextPage}`
+          `/search/users?q=${search ? search + '+' : ''}location:Angola&order=${order}&sort=${sort}&per_page=${limit}&page=${nextPage}`
         )
 
         const { data } = result
