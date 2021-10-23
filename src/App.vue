@@ -83,7 +83,7 @@ export default {
         document.documentElement.scrollHeight - window.innerHeight
 
       if (scrollHeight == window.scrollY && !this.isFetching && this.hasUsers) {
-        // this.fetchUsers()
+        this.fetchUsers()
       }
     },
     searchUsers(text) {
