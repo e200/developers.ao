@@ -20,8 +20,14 @@
       </header>
 
       <transition name="fade" mode="out-in">
-        <spinner v-if="isFirstFetch && !users" class="spinner" />
-        <github-users v-else :users="users" :has-users="hasUsers" />
+        <spinner v-if="isFirstFetch && !users" />
+        <github-users
+          v-else
+          :users="users"
+          :has-users="hasUsers"
+          :error="error"
+          @onRetry="fetchUsers()"
+        />
       </transition>
 
       <br />
@@ -59,7 +65,13 @@ export default {
   },
   computed: {
     ...mapGetters('users', ['hasUsers']),
-    ...mapState('users', ['users', 'count', 'isFirstFetch']),
+    ...mapState('users', [
+      'users',
+      'count',
+      'isFirstFetch',
+      'isFetching',
+      'error',
+    ]),
   },
   methods: {
     fetchUsers() {
@@ -71,23 +83,23 @@ export default {
         document.documentElement.scrollHeight - window.innerHeight
 
       if (scrollHeight == window.scrollY && !this.isFetching && this.hasUsers) {
-        this.fetchUsers()
+        // this.fetchUsers()
       }
     },
     searchUsers(text) {
-      const _me = this
+      const me = this
 
       if (this.timeOutInstance) {
         clearTimeout(this.timeOutInstance)
       }
 
       this.timeOutInstance = setTimeout(() => {
-        if (_me.$store.state.users.filters.search !== text) {
-          _me.$store.commit('users/clearUsers')
+        if (me.$store.state.users.filters.search !== text) {
+          me.$store.commit('users/clearUsers')
 
-          _me.$store.commit('users/filters/search', text)
+          me.$store.commit('users/filters/search', text)
 
-          _me.$store.dispatch('users/fetch')
+          me.$store.dispatch('users/fetch')
         }
       }, 600)
     },

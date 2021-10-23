@@ -13,7 +13,21 @@
 
       <!--<p class="github-users-no-results" v-else>Sem resultados...</p>-->
 
-      <spinner v-if="hasUsers" class="spinner" />
+      <transition name="fade" mode="out-in">
+        <div v-if="error" class="github-users-error">
+          <div class="github-users-error-message">
+            Ocorreu um erro ao carregar a lista
+          </div>
+          <button
+            class="github-users-error-retry-button"
+            v-if="error"
+            @click="$emit('onRetry')"
+          >
+            Tentar novamente
+          </button>
+        </div>
+        <spinner v-else-if="hasUsers" />
+      </transition>
     </div>
   </section>
 </template>
@@ -32,6 +46,7 @@ export default {
       required: true,
       type: Object,
     },
+    error: { required: true },
   },
   components: {
     GithubUser,
@@ -46,6 +61,27 @@ export default {
     color: grey;
     text-align: center;
     margin: 0 auto;
+  }
+
+  &-error {
+    margin: 0 auto;
+    text-align: center;
+
+    &-messager {
+      padding: 15px;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+      margin-bottom: 1em;
+    }
+
+    &-retry-button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background: #db4646;
+      color: white;
+      font-weight: 500;
+    }
   }
 }
 </style>
