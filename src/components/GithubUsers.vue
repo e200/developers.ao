@@ -68,9 +68,6 @@ export default {
     text-align: center;
 
     &-message {
-      padding: 15px;
-      background-color: rgba(0, 0, 0, 0.3);
-      border-radius: 5px;
       margin-bottom: 1em;
     }
 
