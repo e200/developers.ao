@@ -41,12 +41,12 @@ export default {
         this.active = !this.active
       }
 
-      this.$emit('change', this.searchText)
+      this.$emit('onChange', this.searchText)
     },
   },
   watch: {
-    searchText(value) {
-      this.$emit('change', value)
+    searchText() {
+      this.$emit('onChange', this.searchText)
     },
   },
 }

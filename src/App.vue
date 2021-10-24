@@ -33,7 +33,7 @@
       <br />
       <br />
 
-      <search-bar @change="searchUsers" />
+      <search-bar @onChange="searchUsers" />
     </div>
   </main>
 </template>
