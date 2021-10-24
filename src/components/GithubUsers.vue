@@ -67,7 +67,7 @@ export default {
     margin: 0 auto;
     text-align: center;
 
-    &-messager {
+    &-message {
       padding: 15px;
       background-color: rgba(0, 0, 0, 0.3);
       border-radius: 5px;
