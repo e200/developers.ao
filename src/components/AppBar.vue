@@ -54,7 +54,7 @@
               <li>
                 <a
                   class="app-bar-menu-list-link"
-                  href="https://t.me/joinchat/Sq9PhrG161A3ceTP"
+                  href="https://t.me/joinchat/fDsC8wO6cgowNTlk"
                   target="_blank"
                   >Nosso Telegram</a
                 >
